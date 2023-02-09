@@ -1,5 +1,9 @@
 package com.techelevator.view;
 
+import java.io.FileNotFoundException;
+import java.util.Map;
+import java.util.Scanner;
+
 public class VendingMachineCLI {
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
@@ -18,14 +22,16 @@ public class VendingMachineCLI {
 			PURCHASE_MENU_OPTION_FEED_MONEY, PURCHASE_MENU_OPTION_SELECT_PRODUCT,
 			PURCHASE_MENU_OPTION_FINISH_TRANSACTION};
 
+
 	private VendingMenu menu;
 
 	public VendingMachineCLI(VendingMenu menu) {
 		this.menu = menu;
 	}
 
-	public void run() {
+	public void run() throws FileNotFoundException {
 		boolean running = true;
+		Map<String, Items> Inventory = MakingItemsToMap.startUp();
 		while (running) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 
@@ -33,13 +39,32 @@ public class VendingMachineCLI {
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				MakingItemsToMap.item();
 				// display vending machine items
-			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
-				// do purchase
+			}
+			if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
+				menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
+				// if(FEED MONEY SELECTED) { FEED MONEY TO BALANCE }
+				// IF(SELECT PRODUCT SELECTED) ** ENTER ITEM NUMBER ++
+				//        COMPARE BALANCE WITH ITEM COST { TRY TO PURCHASE ITEM }
+
+
+
+				// NEED THREE OPTIONS
+				//FEED SELECT AND END TRANS
+
+
+				//generates sale report with timestamp,
+				//subtracts stock by one stock -1
+			}
+			if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
+				//complete.
+			}
+			if (choice.equals(MAIN_MENU_SECRET_OPTION)) {
+				// sales report
 			}
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		VendingMenu menu = new VendingMenu(System.in, System.out);
 		VendingMachineCLI cli = new VendingMachineCLI(menu);
 		cli.run();

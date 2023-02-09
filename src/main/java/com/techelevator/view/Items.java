@@ -5,8 +5,16 @@ public class Items {
     private String nameOfItem;
     private double price;
     private String typeOfItem;
+    private int stock;
 
 
+    public Items(String locator, String nameOfItem, double price, String typeOfItem, int stock) {
+        this.locator = locator;
+        this.nameOfItem = nameOfItem;
+        this.price = price;
+        this.typeOfItem = typeOfItem;
+        this.stock = stock;
+    }
     public Items(String locator, String nameOfItem, double price, String typeOfItem) {
         this.locator = locator;
         this.nameOfItem = nameOfItem;
@@ -19,6 +27,8 @@ public class Items {
 
     }
 
+    public int getStock() {return stock;}
+    public void setStock(int stock) {this.stock = stock;}
     public String getLocator() {return locator;}
     public String getNameOfItem() {return nameOfItem;}
     public double getPrice() {return price;}
