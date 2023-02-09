@@ -22,6 +22,7 @@ public class VendingMachineCLI {
 			PURCHASE_MENU_OPTION_FEED_MONEY, PURCHASE_MENU_OPTION_SELECT_PRODUCT,
 			PURCHASE_MENU_OPTION_FINISH_TRANSACTION};
 
+
 	private VendingMenu menu;
 
 	public VendingMachineCLI(VendingMenu menu) {
@@ -40,14 +41,19 @@ public class VendingMachineCLI {
 				// display vending machine items
 			}
 			if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
-
-				// feed money (running balance of money inserted)
-
-				//Method to dispense item,
 				menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
+				// if(FEED MONEY SELECTED) { FEED MONEY TO BALANCE }
+				// IF(SELECT PRODUCT SELECTED) ** ENTER ITEM NUMBER ++
+				//        COMPARE BALANCE WITH ITEM COST { TRY TO PURCHASE ITEM }
+
+
+
+				// NEED THREE OPTIONS
+				//FEED SELECT AND END TRANS
+
+
 				//generates sale report with timestamp,
 				//subtracts stock by one stock -1
-
 			}
 			if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
 				//complete.
