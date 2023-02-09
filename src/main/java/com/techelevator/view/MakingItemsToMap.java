@@ -32,6 +32,10 @@ public class MakingItemsToMap {
             e.printStackTrace();
         }
     }
+
+
+    public static void item() {
+    }
 }
 
 
