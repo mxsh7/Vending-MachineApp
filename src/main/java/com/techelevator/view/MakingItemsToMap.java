@@ -55,7 +55,7 @@ public class MakingItemsToMap {
                 typeOfItem = words[3];
 
                 Map<String, Items> map = new HashMap<>();
-                map.put(words[0], new Items(locator, nameOfItem, getPrice(price), typeOfItem));
+                map.put(words[0], new Items(locator, nameOfItem,price, typeOfItem));
 
                 //System.out.println(map);
                 String theNameOfItem = nameOfItem;
@@ -70,7 +70,7 @@ public class MakingItemsToMap {
         }
 
 
-    }
+    }/*
 <<<<<<< HEAD
 
 
@@ -82,9 +82,9 @@ public class MakingItemsToMap {
 
 
 
-/*                        map.put("nameOfItem", new Items(words[1]);
+*//*                        map.put("nameOfItem", new Items(words[1]);
                         map.put("price", new Items(words[2]);
-                        map.put("typeOfItem", new Items(words[3]);*/
+                        map.put("typeOfItem", new Items(words[3]);*//*
 
 =======
 >>>>>>> 9c2ae01cf36e273f49793594ad1030cea40ade28
@@ -95,3 +95,4 @@ public class MakingItemsToMap {
 }
 
 
+*/}
