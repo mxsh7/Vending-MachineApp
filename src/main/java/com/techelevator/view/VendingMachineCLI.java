@@ -37,8 +37,8 @@ public class VendingMachineCLI {
 
 			// A switch statement could also be used here.  Your choice.
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
-				for ( Map.Entry<String, Items> item : Inventory.entrySet() ){
-					System.out.println(item.getValue());
+				for ( Map.Entry<String, Items> startup : Inventory.entrySet() ){
+					System.out.println(startup.getValue());
 				}
 			}
 			if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
@@ -56,8 +56,10 @@ public class VendingMachineCLI {
 				}
 
 				if(choice.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)){
+					for ( Map.Entry<String, Items> startup : Inventory.entrySet() ){
+						System.out.println(startup.getValue());
+					}
 					MoneyHandler.selectProduct(Inventory);
-
 
 				}
 				if(choice.equals(PURCHASE_MENU_OPTION_FINISH_TRANSACTION)){
@@ -66,8 +68,6 @@ public class VendingMachineCLI {
 
 					//return the money back in least amount of coins
 					//update balance to 0
-
-
 
 				}
 
@@ -90,4 +90,5 @@ public class VendingMachineCLI {
 		VendingMachineCLI cli = new VendingMachineCLI(menu);
 		cli.run();
 	}
+
 }

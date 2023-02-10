@@ -1,6 +1,7 @@
 package com.techelevator.view;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.SQLOutput;
@@ -8,6 +9,7 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 
+import static java.lang.System.out;
 
 
 public class MoneyHandler {
@@ -27,10 +29,10 @@ public class MoneyHandler {
     static Scanner scanner = new Scanner(System.in);
 
     public static void feedMoney() {
-        System.out.println("Please enter money");
+        out.println("Please enter money");
         inputMoney = Double.parseDouble(scanner.nextLine());
         balance += inputMoney;
-        System.out.println("Your balance is: " + balance);
+        out.println("Your balance is: " + balance);
 
     }
 
@@ -38,60 +40,72 @@ public class MoneyHandler {
 
         Map<String, Items> Inventory = MakingItemsToMap.startUp();
 
-        for (Map.Entry<String, Items> item : Inventory.entrySet()) {
-            System.out.println(item.getValue());
-        }
-        System.out.println();
-        System.out.println("Please select your product");
-        System.out.println();
-        selectedItem = (scanner.nextLine());
+        try {
 
 
-        Items currentItem = map.get(selectedItem.toUpperCase());
+            /*for (Map.Entry<String, Items> startUp : Inventory.entrySet()) {
+                out.println(startUp.getValue());
+            }*/
+            out.println();
+            out.println("Please select your product");
+            out.println();
+            selectedItem = (scanner.nextLine());
 
 
-        //check for stock
-        if (currentItem.getStock() > 0 && balance >= (currentItem.getPrice())) {
-            currentItem.setStock(currentItem.getStock() - 1);
-            balance -= currentItem.getPrice();
-            System.out.println();
-            System.out.println("Money remaining: " + balance);
-            System.out.println();
-            System.out.println("Enjoy your purchase");
-            if (currentItem.getTypeOfItem().equals("Candy")) {
-                System.out.println("Munch Munch, Mmm Mmm Good!");
+
+        /*if(map.get(selectedItem.toUpperCase()) == null){
+
+            out.println(System.lineSeparator() + "*** " + selectedItem + " is not a valid option ***" + System.lineSeparator());
+        }*/
+
+
+            Items currentItem = map.get(selectedItem.toUpperCase());
+
+
+            //check for stock
+            if (currentItem.getStock() > 0 && balance >= (currentItem.getPrice())) {
+                currentItem.setStock(currentItem.getStock() - 1);
+                balance -= currentItem.getPrice();
+                out.println();
+                out.println("Money remaining: " + balance);
+                out.println();
+                out.println("Enjoy your purchase");
+                if (currentItem.getTypeOfItem().equals("Candy")) {
+                    out.println("Munch Munch, Mmm Mmm Good!");
+                }
+                if (currentItem.getTypeOfItem().equals("Chips")) {
+                    out.println("Crunch Crunch, It's Yummy!");
+                }
+                if (currentItem.getTypeOfItem().equals("Gum")) {
+                    out.println("Chew Chew, Pop!");
+                }
+                if (currentItem.getTypeOfItem().equals("Drink")) {
+                    out.println("Glug Glug, Chug Chug!");
+                }
+                out.println();
+
+
             }
-            if (currentItem.getTypeOfItem().equals("Chips")) {
-                System.out.println("Crunch Crunch, It's Yummy!");
+            if (currentItem.getStock() == 0) {
+                out.println();
+                out.println("This item sold out");
+                out.println();
             }
-            if (currentItem.getTypeOfItem().equals("Gum")) {
-                System.out.println("Chew Chew, Pop!");
+            if (balance < (currentItem.getPrice())) {
+                out.println();
+                out.println("Not enough money, please insert more money");
+                out.println();
+
             }
-            if (currentItem.getTypeOfItem().equals("Drink")) {
-                System.out.println("Glug Glug, Chug Chug!");
-            }
-            System.out.println();
 
+            //check for balance
+            out.println(map.get(selectedItem.toUpperCase()));
 
+        }catch(Exception ex){
+            out.println("Invalid input");
         }
-        if (currentItem.getStock() == 0) {
-            System.out.println();
-            System.out.println("This item sold out");
-            System.out.println();
-        }
-        if (balance < (currentItem.getPrice())) {
-            System.out.println();
-            System.out.println("Not enough money, please insert more money");
-            System.out.println();
-
-        }
-
-        //check for balance
-        System.out.println(map.get(selectedItem.toUpperCase()));
 
     }
-
-
     public static BigDecimal[] getChange() {
 
 
@@ -104,12 +118,12 @@ public class MoneyHandler {
         change = change.subtract(DIME.multiply(new BigDecimal("100")).multiply(dimes));
         BigDecimal nickels = change.divide(NICKEL.multiply(new BigDecimal("100")), 0, RoundingMode.FLOOR);
 
-        System.out.println();
-        System.out.print("Your change is: ");
-        System.out.print("Quarters: " + quarters + " ");
-        System.out.print("Dimes: " + dimes+ " ");
-        System.out.print("Nickels: " + nickels);
-        System.out.println();
+        out.println();
+        out.print("Your change is: ");
+        out.print("Quarters: " + quarters + " ");
+        out.print("Dimes: " + dimes+ " ");
+        out.print("Nickels: " + nickels);
+        out.println();
 
         return new BigDecimal[]{};
     }

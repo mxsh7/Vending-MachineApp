@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 
 public class MakingItemsToMap {
@@ -18,6 +19,7 @@ public class MakingItemsToMap {
         Map<String, Items> map = new HashMap<>();
         try (Scanner scanner = new Scanner(new File("C:\\Users\\Student\\workspace\\nlr-12-module-1-capstone-team-4\\vendingmachine.csv"))) {
             String line;
+            Map<String, Items> treeMap = null;
             while (scanner.hasNextLine()) {
                 line = scanner.nextLine();
                 String locator = "";
@@ -39,9 +41,11 @@ public class MakingItemsToMap {
                 double priceOfItem = price;
                 String itemType = typeOfItem;
 
+                treeMap = new TreeMap<String, Items>(map);
+
 
             }
-            return map;
+            return treeMap;
         }
 
 
