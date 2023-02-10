@@ -37,42 +37,35 @@ public class VendingMachineCLI {
 
 			// A switch statement could also be used here.  Your choice.
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
-
 				for ( Map.Entry<String, Items> item : Inventory.entrySet() ){
 					System.out.println(item.getValue());
-
 				}
-
-
-//				MakingItemsToMap.item();
 			}
 			if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
-
 				choice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 				// if(FEED MONEY SELECTED) { FEED MONEY TO BALANCE }
 				// IF(SELECT PRODUCT SELECTED) ** ENTER ITEM NUMBER ++
 				//        COMPARE BALANCE WITH ITEM COST { TRY TO PURCHASE ITEM }
 				if (choice.equals(PURCHASE_MENU_OPTION_FEED_MONEY)) {
-
 					MoneyHandler.feedMoney();
-
+					choice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 				}
 
 				if(choice.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)){
 					MoneyHandler.selectProduct(Inventory);
 				}
 				if(choice.equals(PURCHASE_MENU_OPTION_FINISH_TRANSACTION)){
+					MoneyHandler.getChange();
+
+					//return the money back in least amount of coins
+					//update balance to 0
 
 
 
 				}
 
-
-//					menu.getChoiceFromOptions(PURCHASE_MENU_OPTION_FEED_MONEY){
-
-				//FEED SELECT AND END TRANS
 				//generates sale report with timestamp,
-				//subtracts stock by one stock -1
+
 			}
 			if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
 

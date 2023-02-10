@@ -36,12 +36,37 @@ public class MakingItemsToMap {
                 String theNameOfItem = nameOfItem;
                 String locationOfItem = locator;
                 double priceOfItem = price;
+                String itemType = typeOfItem;
 
 
             }
             return map;
         }
+
+
+
+    } //		Map<String, Items> Inventory = MakingItemsToMap.startUp();
+
+/*    public static void ItemPhrase() throws FileNotFoundException {
+        Map<String, Items> Inventory = MakingItemsToMap.startUp();
+
+        if (Inventory.get().equals("chip")){
+        System.out.println("Crunch Crunch, Yum!");
     }
+    if (startUp.item().equals("candy")){
+        System.out.println("Munch Munch, Yum!");
+    }
+
+    if (startUp.item().equals("drinks")){
+        System.out.println("Glug Glug, Yum!");
+    }
+
+    if (startUp.item().equals("Gum")){
+        System.out.println("Chew Chew, Yum!");
+    }
+}*/
+
+
     public static void item() throws FileNotFoundException {
         try (Scanner scanner = new Scanner(new File("C:\\Users\\Student\\workspace\\nlr-12-module-1-capstone-team-4\\vendingmachine.csv"))) {
             String line;
@@ -73,30 +98,5 @@ public class MakingItemsToMap {
             e.printStackTrace();
         }
 
-
-    }/*
-<<<<<<< HEAD
-
-
-    public static void item() {
     }
 }
-
-
-
-
-
-*//*                        map.put("nameOfItem", new Items(words[1]);
-                        map.put("price", new Items(words[2]);
-                        map.put("typeOfItem", new Items(words[3]);*//*
-
-=======
->>>>>>> 9c2ae01cf36e273f49793594ad1030cea40ade28
-
-    private static double getPrice(double price) {
-        return price;
-    }
-}
-
-
-*/}

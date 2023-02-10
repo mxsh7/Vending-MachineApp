@@ -1,7 +1,5 @@
 package com.techelevator.view;
 
-import java.io.InputStream;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -22,7 +20,7 @@ public class MoneyHandler {
         static Scanner scanner = new Scanner(System.in);
 
     public static void feedMoney() {
-        System.out.println("Give me cash");
+        System.out.println("Please enter money");
         inputMoney = Double.parseDouble(scanner.nextLine());
         balance += inputMoney;
         System.out.println("Your balance is: " + balance);
@@ -36,14 +34,22 @@ public class MoneyHandler {
          Items currentItem = map.get(selectedItem.toUpperCase());
 
         //check for stock
-        if(currentItem.getStock() > 0 ){
+        if(currentItem.getStock() > 0 && balance >= (currentItem.getPrice())){
             currentItem.setStock(currentItem.getStock()-1);
             balance -= currentItem.getPrice();
-            System.out.println(balance);
+            System.out.println("Money remaining: " + balance);
+            System.out.println();
+            if()
+
+
         }
+        if(currentItem.getStock() == 0 ){
+            System.out.println("This item sold out");
+        }
+        if(balance < (currentItem.getPrice())){
+            System.out.println("Not enough money, please insert more money");
 
-
-
+        }
 
             //check for balance
         System.out.println(map.get(selectedItem.toUpperCase()));
@@ -51,64 +57,26 @@ public class MoneyHandler {
     }
 
 
+        public static int[] getChange() {
+            int[] coins = {5, 10, 25};
+            int[] change = new int[3];
+            for (int i = coins.length - 1; i >= 0; i--) {
+                while (balance >= coins[i]) {
+                    change[i] = change[i] + 1;
+                    balance = balance - coins[i];
+                    System.out.println(balance);
+                    System.out.println(change);
+                    System.out.println(coins);
+                }
+            }
+            return change;
+
+        }
+            }
 
 
-//        if(system.in = map.containskey(userinput)){
-//            price = map.priceOfItem
-//        }
-//    }
-//    public static void selectProduct(Items ) {
-//        if(MakingItemsToMap.item() > balance){
-//            System.out.println("You're poor");
-//        }else{
-//            stockOfItem -= 1;
-//            balance -= priceOfItem;
-//        }}
-//
 
 
-
-//
-//    public static double finishTransaction() {
-//        if (balance > 0) {
-//            return balance;
-//        }
-//        return balance;
-//    }
-//
-//    public static double[] makeChange(double change, double[] denominations) {
-//        denominations = new double[]{quarter, nickel, dime};
-//        double[] result = new double[denominations.length];
-//        Arrays.sort(denominations);
-//        for (int i = denominations.length - 1; i >= 0; i--) {
-//            while (change >= denominations[i]) {
-//                change -= denominations[i];
-//                result[i]++;
-//
-//            }
-//            return result;
-//        }return result;
-//
-//
-//        }
-//
-//        //If money inserted update balance
-//
-//
-//
-//    public void purchaseItem(Items item) {
-//        if (balance >= item.getPrice()) {
-//            //dispense item
-//            balance = balance - item.getPrice();
-//        }
-//    }
-//    /*public Double returnBalance() {
-//        if (balance >= 0.25) {
-//
-//        }*/
-
-
-}
 
 
 
