@@ -23,7 +23,7 @@ public class Items {
     }
     @Override
     public String toString(){
-        return nameOfItem + " " + " price " + price + " type of item " + typeOfItem;
+        return locator + " " + nameOfItem + " " + " price " + price + " type of item " + typeOfItem + " Stock of item " + stock;
 
     }
 

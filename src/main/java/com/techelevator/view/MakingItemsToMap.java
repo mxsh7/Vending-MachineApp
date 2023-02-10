@@ -11,6 +11,8 @@ public class MakingItemsToMap {
 
     }
 
+
+
     public static Map<String, Items> startUp() throws FileNotFoundException {
         Map<String, Items> map = new HashMap<>();
         try (Scanner scanner = new Scanner(new File("C:\\Users\\Student\\workspace\\nlr-12-module-1-capstone-team-4\\vendingmachine.csv"))) {
@@ -34,6 +36,8 @@ public class MakingItemsToMap {
                 String theNameOfItem = nameOfItem;
                 String locationOfItem = locator;
                 double priceOfItem = price;
+
+
             }
             return map;
         }
