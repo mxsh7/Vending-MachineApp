@@ -43,9 +43,13 @@ public class VendingMachineCLI {
 			}
 			if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				choice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
+
+
 				// if(FEED MONEY SELECTED) { FEED MONEY TO BALANCE }
 				// IF(SELECT PRODUCT SELECTED) ** ENTER ITEM NUMBER ++
 				//        COMPARE BALANCE WITH ITEM COST { TRY TO PURCHASE ITEM }
+
+
 				if (choice.equals(PURCHASE_MENU_OPTION_FEED_MONEY)) {
 					MoneyHandler.feedMoney();
 					choice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
@@ -53,9 +57,12 @@ public class VendingMachineCLI {
 
 				if(choice.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)){
 					MoneyHandler.selectProduct(Inventory);
+
+
 				}
 				if(choice.equals(PURCHASE_MENU_OPTION_FINISH_TRANSACTION)){
 					MoneyHandler.getChange();
+					MoneyHandler.balance=0;
 
 					//return the money back in least amount of coins
 					//update balance to 0

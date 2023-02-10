@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+
 public class MakingItemsToMap {
     public static void main(String[] args) throws FileNotFoundException {
 
@@ -44,27 +45,7 @@ public class MakingItemsToMap {
         }
 
 
-
-    } //		Map<String, Items> Inventory = MakingItemsToMap.startUp();
-
-/*    public static void ItemPhrase() throws FileNotFoundException {
-        Map<String, Items> Inventory = MakingItemsToMap.startUp();
-
-        if (Inventory.get().equals("chip")){
-        System.out.println("Crunch Crunch, Yum!");
     }
-    if (startUp.item().equals("candy")){
-        System.out.println("Munch Munch, Yum!");
-    }
-
-    if (startUp.item().equals("drinks")){
-        System.out.println("Glug Glug, Yum!");
-    }
-
-    if (startUp.item().equals("Gum")){
-        System.out.println("Chew Chew, Yum!");
-    }
-}*/
 
 
     public static void item() throws FileNotFoundException {
