@@ -38,20 +38,18 @@ public class VendingMachineCLI {
 			// A switch statement could also be used here.  Your choice.
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				MakingItemsToMap.item();
-				// display vending machine items
 			}
 			if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 				// if(FEED MONEY SELECTED) { FEED MONEY TO BALANCE }
 				// IF(SELECT PRODUCT SELECTED) ** ENTER ITEM NUMBER ++
 				//        COMPARE BALANCE WITH ITEM COST { TRY TO PURCHASE ITEM }
+				if (choice.equals(PURCHASE_MENU_OPTION_FEED_MONEY)) {
+					MoneyHandler.feedMoney();
+				}
+//					menu.getChoiceFromOptions(PURCHASE_MENU_OPTION_FEED_MONEY){
 
-
-
-				// NEED THREE OPTIONS
 				//FEED SELECT AND END TRANS
-
-
 				//generates sale report with timestamp,
 				//subtracts stock by one stock -1
 			}
