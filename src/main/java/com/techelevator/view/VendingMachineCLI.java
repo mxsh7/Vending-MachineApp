@@ -61,6 +61,9 @@ public class VendingMachineCLI {
 					}
 					MoneyHandler.selectProduct(Inventory);
 
+					MoneyHandler.logTransaction();
+
+
 				}
 				if(choice.equals(PURCHASE_MENU_OPTION_FINISH_TRANSACTION)){
 					MoneyHandler.getChange();

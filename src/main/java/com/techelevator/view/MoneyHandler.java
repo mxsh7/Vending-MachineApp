@@ -1,11 +1,13 @@
 package com.techelevator.view;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.sql.SQLOutput;
-import java.util.Arrays;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -19,8 +21,9 @@ public class MoneyHandler {
     static double balance = 0;
     static double inputMoney = 0;
     static String selectedItem;
-    double priceOfItem; //Pulled from map
-//    double price = MakingItemsToMap.item([3])
+    static Items currentItem;
+
+//    static double balance = Math.round(regBalance*100)/100;
 
     MakingItemsToMap mapHolder = new MakingItemsToMap();
 
@@ -30,9 +33,15 @@ public class MoneyHandler {
 
     public static void feedMoney() {
         out.println("Please enter money");
-        inputMoney = Double.parseDouble(scanner.nextLine());
-        balance += inputMoney;
-        out.println("Your balance is: " + balance);
+
+            inputMoney = Double.parseDouble(scanner.nextLine());
+            if(inputMoney > 0) {
+                balance += inputMoney;
+                out.println("Your balance is: " + balance);
+            }
+            if(inputMoney <= 0){
+                out.println("Please deposit more money");
+            }
 
     }
 
@@ -42,10 +51,6 @@ public class MoneyHandler {
 
         try {
 
-
-            /*for (Map.Entry<String, Items> startUp : Inventory.entrySet()) {
-                out.println(startUp.getValue());
-            }*/
             out.println();
             out.println("Please select your product");
             out.println();
@@ -53,13 +58,8 @@ public class MoneyHandler {
 
 
 
-        /*if(map.get(selectedItem.toUpperCase()) == null){
 
-            out.println(System.lineSeparator() + "*** " + selectedItem + " is not a valid option ***" + System.lineSeparator());
-        }*/
-
-
-            Items currentItem = map.get(selectedItem.toUpperCase());
+             currentItem = map.get(selectedItem.toUpperCase());
 
 
             //check for stock
@@ -112,21 +112,52 @@ public class MoneyHandler {
 
         BigDecimal amount = new BigDecimal(balance);
         BigDecimal change = amount.multiply(new BigDecimal("100"));
+
         BigDecimal quarters = change.divide(QUARTER.multiply(new BigDecimal("100")), 0, RoundingMode.FLOOR);
+
         change = change.subtract(QUARTER.multiply(new BigDecimal("100")).multiply(quarters));
+
         BigDecimal dimes = change.divide(DIME.multiply(new BigDecimal("100")), 0, RoundingMode.FLOOR);
+
         change = change.subtract(DIME.multiply(new BigDecimal("100")).multiply(dimes));
+
         BigDecimal nickels = change.divide(NICKEL.multiply(new BigDecimal("100")), 0, RoundingMode.FLOOR);
+
 
         out.println();
         out.print("Your change is: ");
         out.print("Quarters: " + quarters + " ");
-        out.print("Dimes: " + dimes+ " ");
-        out.print("Nickels: " + nickels);
+        out.print(" | Dimes: " + dimes+ " ");
+        out.print(" | Nickels: " + nickels);
         out.println();
 
         return new BigDecimal[]{};
     }
+
+
+
+
+        public static void logTransaction() {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+            String currentDateTime = dateFormat.format(new Date());
+            String logMessage = currentDateTime + ": " + " FEED MONEY " + inputMoney + "  Balance is " + balance + " " ;
+            String logMessage1 = String.valueOf(currentItem);
+
+
+            File logFile = new File("log.txt");
+            try {
+                FileWriter writer = new FileWriter(logFile, true);
+                writer.write(logMessage +  System.lineSeparator());
+                writer.write(logMessage1 +  System.lineSeparator());
+
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
 
 }
 
