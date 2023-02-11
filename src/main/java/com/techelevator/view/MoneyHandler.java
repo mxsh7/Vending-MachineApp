@@ -13,7 +13,6 @@ import java.util.Scanner;
 
 import static java.lang.System.out;
 
-
 public class MoneyHandler {
     private static final BigDecimal QUARTER = new BigDecimal(".25");
     private static final BigDecimal DIME = new BigDecimal(".10");
@@ -22,18 +21,12 @@ public class MoneyHandler {
     static double inputMoney = 0;
     static String selectedItem;
     static Items currentItem;
-
-//    static double balance = Math.round(regBalance*100)/100;
-
+    static double balanceAfterTransactions = 0;
     MakingItemsToMap mapHolder = new MakingItemsToMap();
-
     Map<String, Items> map = (Map<String, Items>) mapHolder;
-
     static Scanner scanner = new Scanner(System.in);
-
     public static void feedMoney() {
         out.println("Please enter money");
-
             inputMoney = Double.parseDouble(scanner.nextLine());
             if(inputMoney > 0) {
                 balance += inputMoney;
@@ -42,30 +35,21 @@ public class MoneyHandler {
             if(inputMoney <= 0){
                 out.println("Please deposit more money");
             }
-
     }
-
     public static void selectProduct(Map<String, Items> map) throws FileNotFoundException {
 
         Map<String, Items> Inventory = MakingItemsToMap.startUp();
 
         try {
-
             out.println();
             out.println("Please select your product");
             out.println();
             selectedItem = (scanner.nextLine());
-
-
-
-
              currentItem = map.get(selectedItem.toUpperCase());
-
-
-            //check for stock
             if (currentItem.getStock() > 0 && balance >= (currentItem.getPrice())) {
                 currentItem.setStock(currentItem.getStock() - 1);
                 balance -= currentItem.getPrice();
+                balanceAfterTransactions = balance;
                 out.println();
                 out.println("Money remaining: " + balance);
                 out.println();
@@ -83,8 +67,6 @@ public class MoneyHandler {
                     out.println("Glug Glug, Chug Chug!");
                 }
                 out.println();
-
-
             }
             if (currentItem.getStock() == 0) {
                 out.println();
@@ -95,16 +77,11 @@ public class MoneyHandler {
                 out.println();
                 out.println("Not enough money, please insert more money");
                 out.println();
-
             }
-
-            //check for balance
             out.println(map.get(selectedItem.toUpperCase()));
-
         }catch(Exception ex){
             out.println("Invalid input");
         }
-
     }
     public static BigDecimal[] getChange() {
 
@@ -133,40 +110,43 @@ public class MoneyHandler {
 
         return new BigDecimal[]{};
     }
-
-
-
-
-        public static void logTransaction() {
+    public static void logTransaction() {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
             String currentDateTime = dateFormat.format(new Date());
-            String logMessage = currentDateTime + ": " + " FEED MONEY " + inputMoney + "  Balance is " + balance + " " ;
-            String logMessage1 = String.valueOf(currentItem);
-
-
+            String logMessage = currentDateTime +" "+(currentItem) + " New balance: " + balance;
             File logFile = new File("log.txt");
             try {
                 FileWriter writer = new FileWriter(logFile, true);
                 writer.write(logMessage +  System.lineSeparator());
-                writer.write(logMessage1 +  System.lineSeparator());
-
                 writer.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
-
-
-
+    public static void logFeedMoney() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+        String currentDateTime = dateFormat.format(new Date());
+        String logMessage = currentDateTime+" "+"FEED MONEY"+" "+inputMoney+" "+balance;
+        File logFile = new File("log.txt");
+        try {
+            FileWriter writer = new FileWriter(logFile, true);
+            writer.write(logMessage +  System.lineSeparator());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void logGiveChange() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+        String currentDateTime = dateFormat.format(new Date());
+        String logMessage = currentDateTime+" "+"GIVE CHANGE"+" "+balanceAfterTransactions+" "+balance;
+        File logFile = new File("log.txt");
+        try {
+            FileWriter writer = new FileWriter(logFile, true);
+            writer.write(logMessage +  System.lineSeparator());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
-
-
-
-
-
-
-
-
-
-

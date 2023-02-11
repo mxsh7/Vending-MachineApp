@@ -7,7 +7,6 @@ public class Items {
     private String typeOfItem;
     private int stock;
 
-
     public Items(String locator, String nameOfItem, double price, String typeOfItem, int stock) {
         this.locator = locator;
         this.nameOfItem = nameOfItem;
@@ -26,7 +25,6 @@ public class Items {
         return locator + " " + nameOfItem + " " + " $" + price + " Items in stock: " + stock;
 
     }
-
     public int getStock() {return stock;}
     public void setStock(int stock) {this.stock = stock;}
     public String getLocator() {return locator;}
