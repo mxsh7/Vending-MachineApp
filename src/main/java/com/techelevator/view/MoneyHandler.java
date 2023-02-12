@@ -111,7 +111,7 @@ public class MoneyHandler {
         return new BigDecimal[]{};
     }
     public static void logTransaction() {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm:ss aa");
             String currentDateTime = dateFormat.format(new Date());
             String logMessage = currentDateTime +" "+(currentItem) + " New balance: " + balance;
             File logFile = new File("log.txt");
@@ -124,7 +124,7 @@ public class MoneyHandler {
             }
         }
     public static void logFeedMoney() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm:ss aa");
         String currentDateTime = dateFormat.format(new Date());
         String logMessage = currentDateTime+" "+"FEED MONEY"+" "+inputMoney+" "+balance;
         File logFile = new File("log.txt");
@@ -137,7 +137,7 @@ public class MoneyHandler {
         }
     }
     public static void logGiveChange() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm:ss aa");
         String currentDateTime = dateFormat.format(new Date());
         String logMessage = currentDateTime+" "+"GIVE CHANGE"+" "+balanceAfterTransactions+" "+balance;
         File logFile = new File("log.txt");
