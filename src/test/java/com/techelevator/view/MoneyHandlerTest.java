@@ -13,22 +13,19 @@ class MoneyHandlerTest {
     public void feedMoney() {
 
 
+
     }
 
     @Test
-    void selectProduct(Map<String, Items> map) throws FileNotFoundException {
+    void selectProduct() throws FileNotFoundException {
 
         Map<String, Items> Inventory = MakingItemsToMap.startUp();
 
-        Map<String, Items> newMap = new HashMap<>();
-        map.put("A1", new Items("A1","Lays", 2.5, "Chips"));
 
-        double balance = 5.0;
-        String selectedItem = "A1";
-        selectProduct(map);
+        Items newItem = Inventory.get("A1");
 
 
-        Assert.assertEquals("Lays", selectedItem);
+        Assert.assertEquals("Potato Crisps", newItem.getNameOfItem());
 
     }
 

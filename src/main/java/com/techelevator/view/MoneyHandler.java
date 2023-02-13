@@ -25,6 +25,7 @@ public class MoneyHandler {
     MakingItemsToMap mapHolder = new MakingItemsToMap();
     Map<String, Items> map = (Map<String, Items>) mapHolder;
     static Scanner scanner = new Scanner(System.in);
+
     public static void feedMoney() {
         out.println("Please enter money");
             inputMoney = Double.parseDouble(scanner.nextLine());
@@ -36,6 +37,7 @@ public class MoneyHandler {
                 out.println("Please deposit more money");
             }
     }
+
     public static void selectProduct(Map<String, Items> map) throws FileNotFoundException {
 
         Map<String, Items> Inventory = MakingItemsToMap.startUp();
